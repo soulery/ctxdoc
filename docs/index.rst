@@ -14,7 +14,6 @@ Think of it as *Continuous Documentation*.
 .. _Markdown: http://daringfireball.net/projects/markdown/syntax
 .. _Subversion: http://subversion.tigris.org/
 .. _Bazaar: http://bazaar.canonical.com/
-.. _Git: http://git-scm.com/
 .. _Mercurial: http://mercurial.selenic.com/
 
 The main documentation for the site is organized into a couple sections:
