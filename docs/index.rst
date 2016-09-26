@@ -16,7 +16,6 @@ Think of it as *Continuous Documentation*.
 .. _Bazaar: http://bazaar.canonical.com/
 .. _Git: http://git-scm.com/
 .. _Mercurial: http://mercurial.selenic.com/
-.. _available on github: http://github.com/rtfd/readthedocs.org
 
 The main documentation for the site is organized into a couple sections:
 
