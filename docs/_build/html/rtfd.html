@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Configuration of the production servers &mdash; Read the Docs Template 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Read the Docs Template 1.0 documentation" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Read the Docs Template 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="configuration-of-the-production-servers">
+<h1>Configuration of the production servers<a class="headerlink" href="#configuration-of-the-production-servers" title="Permalink to this headline">¶</a></h1>
+<p>This document is to help people who are involved in the production instance of Read the Docs running on readthedocs.org. It contains implementation details and useful hints for the people handling operations of the servers.</p>
+<div class="section" id="elastic-search-setup">
+<h2>Elastic Search Setup<a class="headerlink" href="#elastic-search-setup" title="Permalink to this headline">¶</a></h2>
+<p>You need to install the ICU plugin to make ES work:</p>
+<div class="highlight-python"><div class="highlight"><pre># Use the correct path to the plugin executable that ships with ES.
+/usr/share/elasticsearch/bin/plugin -install elasticsearch/elasticsearch-analysis-icu/2.3.0
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">search.indexes</span> <span class="kn">import</span> <span class="n">Index</span><span class="p">,</span> <span class="n">PageIndex</span><span class="p">,</span> <span class="n">ProjectIndex</span><span class="p">,</span> <span class="n">SectionIndex</span>
+
+<span class="c"># Create the index.</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">Index</span><span class="p">()</span>
+<span class="n">index_name</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">timestamped_index</span><span class="p">()</span>
+<span class="n">index</span><span class="o">.</span><span class="n">create_index</span><span class="p">(</span><span class="n">index_name</span><span class="p">)</span>
+<span class="n">index</span><span class="o">.</span><span class="n">update_aliases</span><span class="p">(</span><span class="n">index_name</span><span class="p">)</span>
+<span class="c"># Update mapping</span>
+<span class="n">proj</span> <span class="o">=</span> <span class="n">ProjectIndex</span><span class="p">()</span>
+<span class="n">proj</span><span class="o">.</span><span class="n">put_mapping</span><span class="p">()</span>
+<span class="n">page</span> <span class="o">=</span> <span class="n">PageIndex</span><span class="p">()</span>
+<span class="n">page</span><span class="o">.</span><span class="n">put_mapping</span><span class="p">()</span>
+<span class="n">sec</span> <span class="o">=</span> <span class="n">SectionIndex</span><span class="p">()</span>
+<span class="n">sec</span><span class="o">.</span><span class="n">put_mapping</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Configuration of the production servers</a><ul>
+<li><a class="reference internal" href="#elastic-search-setup">Elastic Search Setup</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/rtfd.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Read the Docs Template 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014, Read the Docs.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

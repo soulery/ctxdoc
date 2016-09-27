@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Versions &mdash; Read the Docs Template 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Read the Docs Template 1.0 documentation" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Read the Docs Template 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="versions">
+<h1>Versions<a class="headerlink" href="#versions" title="Permalink to this headline">¶</a></h1>
+<p>Read the Docs supports multiple versions of your repository.
+On the initial import,
+we will create a <code class="docutils literal"><span class="pre">latest</span></code> version.
+This will point at the default branch for your VCS control: <code class="docutils literal"><span class="pre">master</span></code>, <code class="docutils literal"><span class="pre">default</span></code>, or <code class="docutils literal"><span class="pre">trunk</span></code>.</p>
+<p>We also create a <code class="docutils literal"><span class="pre">stable</span></code> version,
+if your project has any tagged releases.
+<code class="docutils literal"><span class="pre">stable</span></code> will be automatically kept up to date to point at your highest version.</p>
+<div class="section" id="how-we-envision-versions-working">
+<h2>How we envision versions working<a class="headerlink" href="#how-we-envision-versions-working" title="Permalink to this headline">¶</a></h2>
+<p>In the normal case,
+the <code class="docutils literal"><span class="pre">latest</span></code> version will always point to the most up to date development code.
+If you develop on a branch that is different than the default for your VCS,
+you should set the <strong>Default Branch</strong> to that branch.</p>
+<p>You should push a <strong>tag</strong> for each version of your project.
+These tags should be numbered in a way that is consistent with <a class="reference external" href="http://semver.org/">semantic versioning</a>.
+This will map to your <code class="docutils literal"><span class="pre">stable</span></code> branch by default.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>We in fact are parsing your tag names against the rules given by
+<a class="reference external" href="https://www.python.org/dev/peps/pep-0440/">PEP 440</a>. This spec allows &#8220;normal&#8221; version numbers like <code class="docutils literal"><span class="pre">1.4.2</span></code> as
+well as pre-releases. An alpha version or a release candidate are examples
+of pre-releases and they look like this: <code class="docutils literal"><span class="pre">2.0a1</span></code>.</p>
+<p class="last">We only consider non pre-releases for the <code class="docutils literal"><span class="pre">stable</span></code> version of your
+documentation.</p>
+</div>
+<p>If you have documentation changes on a <strong>long-lived branch</strong>,
+you can build those too.
+This will allow you to see how the new docs will be built in this branch of the code.
+Generally you won&#8217;t have more than 1 active branch over a long period of time.
+The main exception here would be <strong>release branches</strong>,
+which are branches that are maintained over time for a specific release number.</p>
+</div>
+<div class="section" id="redirects-on-root-urls">
+<h2>Redirects on root URLs<a class="headerlink" href="#redirects-on-root-urls" title="Permalink to this headline">¶</a></h2>
+<p>When a user hits the root URL for your documentation,
+for example <code class="docutils literal"><span class="pre">http://pip.readthedocs.io/</span></code>,
+they will be redirected to the <strong>Default version</strong>.
+This defaults to <strong>latest</strong>,
+but could also point to your latest released version.</p>
+</div>
+<div class="section" id="marshall-add-for-test">
+<h2>Marshall Add for test<a class="headerlink" href="#marshall-add-for-test" title="Permalink to this headline">¶</a></h2>
+<p>Here is what Marshall added for test.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Versions</a><ul>
+<li><a class="reference internal" href="#how-we-envision-versions-working">How we envision versions working</a></li>
+<li><a class="reference internal" href="#redirects-on-root-urls">Redirects on root URLs</a></li>
+<li><a class="reference internal" href="#marshall-add-for-test">Marshall Add for test</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/versions.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Read the Docs Template 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014, Read the Docs.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

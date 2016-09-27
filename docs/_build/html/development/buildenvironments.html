@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Build Environments &mdash; Read the Docs Template 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Read the Docs Template 1.0 documentation" href="../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Read the Docs Template 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="build-environments">
+<h1>Build Environments<a class="headerlink" href="#build-environments" title="Permalink to this headline">¶</a></h1>
+<p>Read the Docs uses container virtualization to encapsulate documentation build
+processes. Each build spins up a new virtual machine using our base image,
+which is an image with the minimum necessary components required to build
+documentation. Virtual machines are limiting in CPU time and memory, which aims
+to reduce excessive usage of build resources.</p>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>Build environments use <a class="reference external" href="http://docker.com">Docker</a> to handle container virtualization. To perform
+any development on the Docker build system, you will need to set up <a class="reference external" href="http://docker.com">Docker</a> on
+your host system. Setup of Docker will vary by system, and so is out of the
+scope of this documentation.</p>
+<p>Once you have Docker set up, you will need to create the base image used for
+container creation. The <code class="docutils literal"><span class="pre">base</span></code> image is found in our <a class="reference external" href="https://github.com/rtfd/readthedocs-docker-images">container images repo</a>.
+It is the basic container image supported by our community site.</p>
+<p>To get started, create the image using the <cite>docker</cite> command line tool. You can
+name the image whatever you like here, <code class="docutils literal"><span class="pre">rtfd-build</span></code> is the default name, but
+can be configured in your settings &#8211; see <a class="reference internal" href="#configuration">Configuration</a>:</p>
+<div class="highlight-python"><div class="highlight"><pre>docker build -t rtfd-build base/
+</pre></div>
+</div>
+<p>When this process has completed, you should have a working image that Read the
+Docs can use to start containers.</p>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>There are several settings used to configure usage of virtual machines:</p>
+<dl class="docutils">
+<dt>DOCKER_ENABLED</dt>
+<dd>True/False value used to enable the Docker build environment. Default:
+False</dd>
+<dt>DOCKER_LIMITS</dt>
+<dd><p class="first">A dictionary of limits to virtual machines. These limits include:</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>time</dt>
+<dd>An integer representing the total allowed time limit (in
+seconds) of build processes. This time limit affects the parent
+process to the virtual machine and will force a virtual machine
+to die if a build is still running after the allotted time
+expires.</dd>
+<dt>memory</dt>
+<dd>The maximum memory allocated to the virtual machine. If this
+limit is hit, build processes will be automatically killed.
+Examples: &#8216;200m&#8217; for 200MB of total memory, or &#8216;2g&#8217; for 2GB of
+total memory.</dd>
+</dl>
+</div></blockquote>
+</dd>
+<dt>DOCKER_IMAGE</dt>
+<dd>Tag of a Docker image to use as a base image.</dd>
+<dt>DOCKER_SOCKET</dt>
+<dd>URI of the socket to connect to the Docker daemon. Examples include:
+<code class="docutils literal"><span class="pre">unix:///var/run/docker.sock</span></code> and <code class="docutils literal"><span class="pre">tcp://127.0.0.1:2375</span></code></dd>
+<dt>DOCKER_VERSION</dt>
+<dd>Version of the API to use for the Docker API client.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Build Environments</a><ul>
+<li><a class="reference internal" href="#setup">Setup</a></li>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/development/buildenvironments.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Read the Docs Template 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014, Read the Docs.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

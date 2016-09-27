@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Designing Read the Docs &mdash; Read the Docs Template 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Read the Docs Template 1.0 documentation" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Read the Docs Template 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="designing-read-the-docs">
+<span id="id1"></span><h1>Designing Read the Docs<a class="headerlink" href="#designing-read-the-docs" title="Permalink to this headline">¶</a></h1>
+<p>So you&#8217;re thinking of contributing some of your
+time and design skills to Read the Docs? That&#8217;s
+<strong>awesome</strong>. This document will lead you through
+a few features available to ease the process of
+working with Read the Doc&#8217;s CSS and static assets.</p>
+<p>To start, you should follow the <a class="reference internal" href="install.html#installing-read-the-docs"><span>Installation</span></a> instructions
+to get a working copy of the Read the Docs repository locally.</p>
+<div class="section" id="style-catalog">
+<h2>Style Catalog<a class="headerlink" href="#style-catalog" title="Permalink to this headline">¶</a></h2>
+<p>Once you have RTD running locally, you can open <code class="docutils literal"><span class="pre">http://localhost:8000/style-catalog/</span></code>
+for a quick overview of the currently available styles.</p>
+<img alt="_images/headers.png" src="_images/headers.png" />
+<p>This way you can quickly get started writing HTML &#8211; or if you&#8217;re
+modifying existing styles you can get a quick idea of how things
+will change site-wide.</p>
+</div>
+<div class="section" id="typekit-fonts">
+<h2>Typekit Fonts<a class="headerlink" href="#typekit-fonts" title="Permalink to this headline">¶</a></h2>
+<p>RTD uses <a class="reference external" href="https://typekit.com/fonts/ff-meta-web-pro">FF Meta</a> via TypeKit to render most display and body text.</p>
+<p>To make this work locally, you can register a free TypeKit account and
+create a site profile for <code class="docutils literal"><span class="pre">localhost:8000</span></code> that includes the linked font.</p>
+</div>
+<div class="section" id="readthedocs-org-changes">
+<h2>Readthedocs.org Changes<a class="headerlink" href="#readthedocs-org-changes" title="Permalink to this headline">¶</a></h2>
+<p>Styles for the primary RTD site are located in <code class="docutils literal"><span class="pre">media/css</span></code> directory.</p>
+<p>These styles only affect the primary site &#8211; <strong>not</strong> any of the generated
+documentation using the default RTD style.</p>
+</div>
+<div class="section" id="sphinx-template-changes">
+<h2>Sphinx Template Changes<a class="headerlink" href="#sphinx-template-changes" title="Permalink to this headline">¶</a></h2>
+<p>Styles for generated documentation are located in <code class="docutils literal"><span class="pre">readthedocs/templates/sphinx/_static/rtd.css</span></code></p>
+<p>Of note, projects will retain the version of that file they were last built with &#8211; so if you&#8217;re
+editing that file and not seeing any changes to your local built documentation, you need to rebuild
+your example project.</p>
+</div>
+<div class="section" id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
+<p>Contributions should follow the <a class="reference internal" href="contribute.html#contributing-to-read-the-docs"><span>Contributing to Read the Docs</span></a> guidelines where applicable &#8211; ideally you&#8217;ll
+create a pull request against the <a class="reference external" href="https://github.com/rtfd/readthedocs.org/pulls">Read the Docs GitHub project</a> from your forked repo and include
+a brief description of what you added / removed / changed, as well as an attached image (you can just
+take a screenshot and drop it into the PR creation form) of the effects of your changes.</p>
+<p>There&#8217;s not a hard browser range, but your design changes should work reasonably well across all major
+browsers, IE8+ &#8211; that&#8217;s not to say it needs to be pixel-perfect in older browsers! Just avoid
+making changes that render older browsers utterly unusable (or provide a sane fallback).</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Designing Read the Docs</a><ul>
+<li><a class="reference internal" href="#style-catalog">Style Catalog</a></li>
+<li><a class="reference internal" href="#typekit-fonts">Typekit Fonts</a></li>
+<li><a class="reference internal" href="#readthedocs-org-changes">Readthedocs.org Changes</a></li>
+<li><a class="reference internal" href="#sphinx-template-changes">Sphinx Template Changes</a></li>
+<li><a class="reference internal" href="#contributing">Contributing</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/design.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Read the Docs Template 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014, Read the Docs.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

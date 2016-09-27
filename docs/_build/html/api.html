@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Read the Docs Public API &mdash; Read the Docs Template 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Read the Docs Template 1.0 documentation" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Read the Docs Template 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="read-the-docs-public-api">
+<h1>Read the Docs Public API<a class="headerlink" href="#read-the-docs-public-api" title="Permalink to this headline">¶</a></h1>
+<p>We have a limited public API that is available for you to get data out of the site. This page will only show a few of the basic parts, please file a ticket or ping us on IRC (#readthedocs on <a class="reference external" href="http://webchat.freenode.net">Freenode (chat.freenode.net)</a>) if you have feature requests.</p>
+<p>This document covers only part of the API provided. We have plans to create a read/write API, so that you can easily automate interactions with your project.</p>
+<p>The API is written in Tastypie, which provides a nice ability to browse the API from your browser. If you go to <a class="reference external" href="http://readthedocs.org/api/v1/?format=json">http://readthedocs.org/api/v1/?format=json</a> and just poke around, you should be able to figure out what is going on.</p>
+<div class="section" id="a-basic-api-client-using-slumber">
+<h2>A basic API client using slumber<a class="headerlink" href="#a-basic-api-client-using-slumber" title="Permalink to this headline">¶</a></h2>
+<p>You can use <a class="reference external" href="http://slumber.readthedocs.io/">Slumber</a> to build basic API wrappers in python. Here is a simple example of using slumber to interact with the RTD API:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">import</span> <span class="nn">slumber</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">show_objs</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">slumber</span><span class="o">.</span><span class="n">API</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="s">&#39;http://readthedocs.org/api/v1/&#39;</span><span class="p">)</span>
+
+<span class="n">val</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">slug</span><span class="o">=</span><span class="s">&#39;pip&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">show_objs</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">val</span><span class="p">[</span><span class="s">&#39;objects&#39;</span><span class="p">]:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Alternatively you can try with the following value:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># fetch project pip without metadata.</span>
+<span class="n">val</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="s">&#39;pip&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+
+<span class="c"># get a specific build</span>
+<span class="n">val</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="mi">2592228</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+
+<span class="c"># get the build of a specific project.</span>
+<span class="n">val</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">build</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">project__slug</span><span class="o">=</span><span class="s">&#39;read-the-docs&#39;</span><span class="p">)</span>
+
+<span class="c"># get a specific user by `username`</span>
+<span class="n">val</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;eric&#39;</span><span class="p">)</span>
+
+<span class="c">#val = api.version(&#39;pip&#39;).get()</span>
+<span class="c">#val = api.version(&#39;pip&#39;).get(slug=&#39;1.0.1&#39;)</span>
+
+<span class="c">#val = api.version(&#39;pip&#39;).highest.get()</span>
+<span class="c">#val = api.version(&#39;pip&#39;).highest(&#39;0.8&#39;).get()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-of-adding-a-user-to-a-project">
+<h2>Example of adding a user to a project<a class="headerlink" href="#example-of-adding-a-user-to-a-project" title="Permalink to this headline">¶</a></h2>
+<p>You can use the api to add user to a project,
+to authenticate with <cite>slumber</cite>, use the following:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">import</span> <span class="nn">slumber</span>
+
+<span class="n">USERNAME</span> <span class="o">=</span> <span class="s">&#39;eric&#39;</span>
+<span class="n">PASSWORD</span> <span class="o">=</span> <span class="s">&#39;test&#39;</span>
+
+<span class="n">user_to_add</span> <span class="o">=</span> <span class="s">&#39;coleifer&#39;</span>
+<span class="n">project_slug</span> <span class="o">=</span> <span class="s">&#39;read-the-docs&#39;</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">slumber</span><span class="o">.</span><span class="n">API</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="s">&#39;http://readthedocs.org/api/v1/&#39;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="p">(</span><span class="n">USERNAME</span><span class="p">,</span><span class="n">PASSWORD</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+
+<span class="n">project</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">slug</span><span class="o">=</span><span class="n">project_slug</span><span class="p">)</span>
+<span class="n">user</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">user_to_add</span><span class="p">)</span>
+<span class="n">project_objects</span> <span class="o">=</span> <span class="n">project</span><span class="p">[</span><span class="s">&#39;objects&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">user_objects</span> <span class="o">=</span> <span class="n">user</span><span class="p">[</span><span class="s">&#39;objects&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;users&#39;</span><span class="p">:</span> <span class="n">project_objects</span><span class="p">[</span><span class="s">&#39;users&#39;</span><span class="p">][:]}</span>
+<span class="n">data</span><span class="p">[</span><span class="s">&#39;users&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">user_objects</span><span class="p">[</span><span class="s">&#39;resource_uri&#39;</span><span class="p">])</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Adding </span><span class="si">%s</span><span class="s"> to </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">user_objects</span><span class="p">[</span><span class="s">&#39;username&#39;</span><span class="p">],</span> <span class="n">project_objects</span><span class="p">[</span><span class="s">&#39;slug&#39;</span><span class="p">]))</span>
+<span class="n">api</span><span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="n">project_objects</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">project2</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">slug</span><span class="o">=</span><span class="n">project_slug</span><span class="p">)</span>
+<span class="n">project2_objects</span> <span class="o">=</span> <span class="n">project2</span><span class="p">[</span><span class="s">&#39;objects&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Before users: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">project_objects</span><span class="p">[</span><span class="s">&#39;users&#39;</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;After users: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">project2_objects</span><span class="p">[</span><span class="s">&#39;users&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="api-endpoints">
+<h2>API Endpoints<a class="headerlink" href="#api-endpoints" title="Permalink to this headline">¶</a></h2>
+<p>Feel free to use cURL and python to look at formatted json examples. You can also look at them in your browser, if it handles returned json.</p>
+<div class="highlight-python"><div class="highlight"><pre>curl http://readthedocs.org/api/v1/project/pip/?format=json | python -m json.tool
+</pre></div>
+</div>
+</div>
+<div class="section" id="root">
+<h2>Root<a class="headerlink" href="#root" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="builds">
+<h2>Builds<a class="headerlink" href="#builds" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="build">
+<h2>Build<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="files">
+<h2>Files<a class="headerlink" href="#files" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="file">
+<h2>File<a class="headerlink" href="#file" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="projects">
+<h2>Projects<a class="headerlink" href="#projects" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="project">
+<h2>Project<a class="headerlink" href="#project" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="users">
+<h2>Users<a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="user">
+<h2>User<a class="headerlink" href="#user" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="versions">
+<h2>Versions<a class="headerlink" href="#versions" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="version">
+<h2>Version<a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="filtering-examples">
+<h2>Filtering Examples<a class="headerlink" href="#filtering-examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="find-highest-version">
+<h3>Find Highest Version<a class="headerlink" href="#find-highest-version" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre>http://readthedocs.org/api/v1/version/pip/highest/?format=json
+</pre></div>
+</div>
+</div>
+<div class="section" id="compare-highest-version">
+<h3>Compare Highest Version<a class="headerlink" href="#compare-highest-version" title="Permalink to this headline">¶</a></h3>
+<p>This will allow you to compare whether a certain version is the highest version of a specific project. The below query should return a <cite>&#8216;is_highest&#8217;: false</cite> in the returned dictionary.</p>
+<div class="highlight-python"><div class="highlight"><pre>http://readthedocs.org/api/v1/version/pip/highest/0.8/?format=json
+</pre></div>
+</div>
+</div>
+<div class="section" id="file-search">
+<h3>File Search<a class="headerlink" href="#file-search" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre>http://readthedocs.org/api/v1/file/search/?format=json&amp;q=virtualenvwrapper
+</pre></div>
+</div>
+</div>
+<div class="section" id="anchor-search">
+<h3>Anchor Search<a class="headerlink" href="#anchor-search" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre>http://readthedocs.org/api/v1/file/anchor/?format=json&amp;q=virtualenv
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Read the Docs Public API</a><ul>
+<li><a class="reference internal" href="#a-basic-api-client-using-slumber">A basic API client using slumber</a></li>
+<li><a class="reference internal" href="#example-of-adding-a-user-to-a-project">Example of adding a user to a project</a></li>
+<li><a class="reference internal" href="#api-endpoints">API Endpoints</a></li>
+<li><a class="reference internal" href="#root">Root</a></li>
+<li><a class="reference internal" href="#builds">Builds</a></li>
+<li><a class="reference internal" href="#build">Build</a></li>
+<li><a class="reference internal" href="#files">Files</a></li>
+<li><a class="reference internal" href="#file">File</a></li>
+<li><a class="reference internal" href="#projects">Projects</a></li>
+<li><a class="reference internal" href="#project">Project</a></li>
+<li><a class="reference internal" href="#users">Users</a></li>
+<li><a class="reference internal" href="#user">User</a></li>
+<li><a class="reference internal" href="#versions">Versions</a></li>
+<li><a class="reference internal" href="#version">Version</a></li>
+<li><a class="reference internal" href="#filtering-examples">Filtering Examples</a><ul>
+<li><a class="reference internal" href="#find-highest-version">Find Highest Version</a></li>
+<li><a class="reference internal" href="#compare-highest-version">Compare Highest Version</a></li>
+<li><a class="reference internal" href="#file-search">File Search</a></li>
+<li><a class="reference internal" href="#anchor-search">Anchor Search</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/api.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Read the Docs Template 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014, Read the Docs.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Webhooks &mdash; Read the Docs Template 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Read the Docs Template 1.0 documentation" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Read the Docs Template 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="webhooks">
+<h1>Webhooks<a class="headerlink" href="#webhooks" title="Permalink to this headline">¶</a></h1>
+<p>Webhooks are pretty amazing, and help to turn the web into a push instead of
+pull platform. We have support for hitting a URL whenever you commit to your
+project and we will try and rebuild your docs. This only rebuilds them if
+something has changed, so it is cheap on the server side. As anyone who has
+worked with push knows, pushing a doc update to your repo and watching it get
+updated within seconds is an awesome feeling.</p>
+<div class="section" id="github">
+<h2>GitHub<a class="headerlink" href="#github" title="Permalink to this headline">¶</a></h2>
+<p>If your project is hosted on GitHub, you can easily add a hook that will rebuild
+your docs whenever you push updates:</p>
+<ul class="simple">
+<li>Go to the &#8220;Settings&#8221; page for your project</li>
+<li>Click &#8220;Webhooks &amp; Services&#8221;</li>
+<li>In the &#8220;Services&#8221; section, click &#8220;Add service&#8221;</li>
+<li>In the list of available services, click &#8220;ReadTheDocs&#8221;</li>
+<li>Check &#8220;Active&#8221;</li>
+<li>Click &#8220;Add service&#8221;</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The GitHub URL in your Read the Docs project must match the URL on GitHub. The URL is case-sensitive.</p>
+</div>
+<p>If you ever need to manually set the webhook on GitHub,
+you can point it at <code class="docutils literal"><span class="pre">https://readthedocs.org/github</span></code>.</p>
+</div>
+<div class="section" id="bitbucket">
+<h2>Bitbucket<a class="headerlink" href="#bitbucket" title="Permalink to this headline">¶</a></h2>
+<p>If your project is hosted on Bitbucket, you can easily add a hook that will rebuild
+your docs whenever you push updates:</p>
+<ul class="simple">
+<li>Go to the &#8220;admin&#8221; page for your project</li>
+<li>Click &#8220;Services&#8221;</li>
+<li>In the available service hooks, select &#8220;Read the Docs&#8221;</li>
+<li>Click &#8220;Add service&#8221;</li>
+</ul>
+<p>If you ever need to manually set the webhook on Bitbucket,
+you can point it at <code class="docutils literal"><span class="pre">https://readthedocs.org/bitbucket</span></code>.</p>
+</div>
+<div class="section" id="others">
+<h2>Others<a class="headerlink" href="#others" title="Permalink to this headline">¶</a></h2>
+<p>Your ReadTheDocs project detail page has your post-commit hook on it; it will
+look something along the lines of <code class="docutils literal"><span class="pre">http://readthedocs.org/build/&lt;project_name&gt;</span></code>.
+Regardless of which revision control system you use, you can just hit this URL
+to kick off a rebuild.</p>
+<p>You could make this part of a hook using <a class="reference external" href="http://www.kernel.org/pub/software/scm/git/docs/githooks.html">Git</a>, <a class="reference external" href="http://mikewest.org/2006/06/subversion-post-commit-hooks-101">Subversion</a>, <a class="reference external" href="http://hgbook.red-bean.com/read/handling-repository-events-with-hooks.html">Mercurial</a>, or
+<a class="reference external" href="http://wiki.bazaar.canonical.com/BzrHooks">Bazaar</a>, perhaps through a simple script that accesses the build URL using
+<code class="docutils literal"><span class="pre">wget</span></code> or <code class="docutils literal"><span class="pre">curl</span></code>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Webhooks</a><ul>
+<li><a class="reference internal" href="#github">GitHub</a></li>
+<li><a class="reference internal" href="#bitbucket">Bitbucket</a></li>
+<li><a class="reference internal" href="#others">Others</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/webhooks.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Read the Docs Template 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2014, Read the Docs.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
+    </div>
+  </body>
+</html>
