@@ -19,13 +19,12 @@ The main documentation for the site is organized into a couple sections: (Think 
 .. toctree::
    :maxdepth: 2
    :caption: StoreFront SDK
-
+   
    sf/getting_started
    sf/sample_code
    sf/api_reference
 
 .. _ddc-sdk:
-
 .. toctree::
    :maxdepth: 2
    :caption: Desktop Delivery Controller SDK
